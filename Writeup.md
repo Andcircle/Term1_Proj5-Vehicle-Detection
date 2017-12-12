@@ -45,11 +45,29 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+Different combinations of parameters has been tried, the final version is as following:
+At the very begining, I lean to use all the channels for hog feature extraction, but it will take too much time (3 times compared to single channel). And actually the most useful info is contained in the Y channel, single Y channel can achieve almost the same accuracy as 3 channel (0.97~0.98)
+__________________________________________________________________
+color_space = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
+__________________________________________________________________
+orient = 9  # HOG orientations
+__________________________________________________________________
+pix_per_cell = 8 # HOG pixels per cell
+__________________________________________________________________
+cell_per_block = 2 # HOG cells per block
+__________________________________________________________________
+hog_channel = 0 # Can be 0, 1, 2, or "ALL"
+__________________________________________________________________
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM using all spatial color feature, hist color feature and HOG feature, the parameters are as following:
+__________________________________________________________________
+spatial_size = (16, 16) # Spatial binning dimensions
+__________________________________________________________________
+hist_bins = 16    # Number of histogram bins
+__________________________________________________________________
+Final accuracy is around 0.97~0.98
 
 ### Sliding Window Search
 
