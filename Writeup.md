@@ -75,9 +75,11 @@ Final accuracy is around 0.97~0.98
 The function definition of sliding window search is in utils.py, this function has been used in both test_plot.py and pipeline.py.
 
 The searching window is limited to following size:
-
+__________________________________________________________________
 x_start_stop = [200, 1280] # Min and max in y to search in slide_window()
+__________________________________________________________________
 y_start_stop = [400, 660] 
+__________________________________________________________________
 
 Ultimately I searched on 3 scales using YCrCb Y-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
