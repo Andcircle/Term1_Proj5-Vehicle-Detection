@@ -46,6 +46,7 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 #### 2. HOG parameters.
 
 Different combinations of parameters has been tried, the final version is as following:
+
 At the very begining, I lean to use all the channels for hog feature extraction, but it will take too much time (3 times compared to single channel). And actually the most useful info is contained in the Y channel, single Y channel can achieve almost the same accuracy as 3 channel (0.97~0.98)
 __________________________________________________________________
 color_space = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
@@ -74,6 +75,7 @@ Final accuracy is around 0.97~0.98
 The function definition of sliding window search is in utils.py, this function has been used in both test_plot.py and pipeline.py.
 
 The searching window is limited to following size:
+
 x_start_stop = [200, 1280] # Min and max in y to search in slide_window()
 y_start_stop = [400, 660] 
 
@@ -81,6 +83,8 @@ Ultimately I searched on 3 scales using YCrCb Y-channel HOG features plus spatia
 
 ![alt text][image3]
 ![alt text][image4]
+![alt text][image5]
+![alt text][image6]
 ---
 
 ### Video Implementation
@@ -89,13 +93,14 @@ Here's a [link to my video result](./op_project_v2.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
-This method works, but I still have many false positives, in order to improve the detection result. I recorded hot window list from last 10 frames, then generate a heat_map based on these data. The result is much more stable now.  
+This method works, but I still have many false positives, in order to improve the detection result. I recorded hot window list from last 10 frames, then generate a heat_map based on these data. The result is much more stable now. 
+
 ---
 
 ### Discussion
 
 Right I still have 2 problems:
-1. Positive false still happens (only once)
+1. False positive still happens (only once)
 2. The size of the bounding box keep changing
 
 Potential solution:
